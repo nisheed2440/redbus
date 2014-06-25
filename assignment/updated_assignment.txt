@@ -1,0 +1,19 @@
+Ques : 
+
+Create a web application to take notes and store it.
+The application UI has two parts. 
+- Note creation block where user enters title(text) and a note(description text). On submit of the above fields the note should be saved and shown in list of notes
+- List of notes which show the list of notes (Each element in the list will have the title, note and option to modify or delete the note)
+
+One need to take title and note as one entity from user and on submit need to display it in the form of a list.(similar to comment on blog)
+- A user can enter any number of entity(title+note)
+- No duplicate entry (with respect to title)
+- We should be able to modify and delete each entity.
+- Use only HTML,CSS and JavaScript(please try to build application withount any JS frameworks/Library and server side languages)
+- Data should be retained in browser when user reload the page
+- Design is up to you. Use any simple design which you think is best
+
+Good to have
+- Search the list on basis of title or content
+- Object oriented code
+- Semantic code and responsive design
