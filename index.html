@@ -53,47 +53,31 @@
         </fieldset>
       </form>
     </section>
-    <section class="rb-comments">
-      <div class="rb-comment-wrap">
-        <div class="rb-comment">
-          <div class="rb-comment-user">
-            <img alt="user" src="img/user.png">
-          </div>
-          <div class="rb-comment-content">
-            <h3 class="comment-title">Tech Hub</h3>
-            <p class="comment-desc"> Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-          <div class="rb-comment-actions">
-            <a href="#" class="comment-edit">EDIT</a>
-            <a href="#" class="comment-delete">DELETE</a>
-          </div>
-        </div>
-      </div>
-      <div class="rb-comment-wrap">
-        <div class="rb-comment">
-          <div class="rb-comment-user">
-            <img alt="user" src="img/user.png">
-          </div>
-          <div class="rb-comment-content">
-            <h3 class="comment-title">Transport System</h3>
-            <p class="comment-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.</p>
-          </div>
-          <div class="rb-comment-actions">
-            <a href="#" class="comment-edit">EDIT</a>
-            <a href="#" class="comment-delete">DELETE</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="rb-comments" class="rb-comments"></section>
   </article>
+
+  <div id="comment-template" class="hidden">
+    <div class="rb-comment-wrap">
+        <div class="rb-comment">
+          <div class="rb-comment-user">
+            <img alt="user" src="img/user.png">
+          </div>
+          <div class="rb-comment-content">
+            <h3 class="comment-title"></h3>
+            <p class="comment-desc"></p>
+          </div>
+          <div class="rb-comment-actions">
+            <a href="#" class="comment-edit">EDIT</a>
+            <a href="#" class="comment-delete">DELETE</a>
+          </div>
+        </div>
+      </div>
+  </div>
+
   <footer class="rb-footer">
     <p class="rb-footer-copywrite">&copy; Pilani Soft Labs Pvt Ltd - www.redBus.in, 2014</p>
   </footer>
+  <script src="js/development/utils.js"></script>
   <script src="js/production/main.js"></script>
 </body>
 </html>

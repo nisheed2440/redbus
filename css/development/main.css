@@ -356,6 +356,9 @@ td,
 th {
   padding: 0;
 }
+.hidden {
+  display: none;
+}
 .no-js .rb-content {
   display: none;
 }

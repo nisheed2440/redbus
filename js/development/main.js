@@ -11,5 +11,20 @@
  */
 
 (function() {
+
+    //Remove the no-js class if javascript is enabled
     document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className.replace('no-js', '');
+
+    document.querySelector('body').addEventListener('click', function(e) {
+        if (e.target.className === 'comment-edit') {
+            e.preventDefault();
+            console.log('EDIT CLICKED');
+        }
+
+        if (e.target.className === 'comment-delete') {
+            e.preventDefault();
+            console.log('DELETE CLICKED');
+        }
+    });
+
 })();
