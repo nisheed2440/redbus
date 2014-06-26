@@ -11,5 +11,5 @@
  */
 
 (function() {
-    $('html').removeClass('no-js');
-})($);
+    document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className.replace('no-js', '');
+})();

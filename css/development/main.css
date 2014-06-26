@@ -531,7 +531,6 @@ html {
   font-size: 12px;
   line-height: 20px;
   background-color: #CCC;
-  padding: 0 10px;
   width: 60px;
   height: 20px;
   text-align: center;
@@ -595,4 +594,10 @@ html {
     float: left;
     clear: none;
   }
+}
+.lt-ie9 .rb-app {
+  background-repeat: no-repeat;
+}
+.lt-ie9 .rb-comments .rb-comment-wrap:first-child {
+  border-top: 2px dashed #999999;
 }
