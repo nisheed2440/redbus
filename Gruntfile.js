@@ -3,6 +3,32 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        jshint: {
+            options: {
+                bitwise: true,
+                curly: true,
+                eqeqeq: true,
+                es3: true,
+                forin: true,
+                immed: true,
+                latedef: true,
+                newcap: true,
+                noarg: true,
+                noempty: true,
+                nonew: true,
+                undef: true,
+                quotmark: 'single',
+                browser: true,
+                predef: ['RB'],
+                ignores: [
+                    'js/development/html5shiv.js',
+                    'js/development/respond.src.js'
+                ]
+            },
+            files: {
+                src: ['js/development/**/*']
+            }
+        },
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.version %> */\n'
@@ -10,6 +36,7 @@ module.exports = function(grunt) {
             mainMinify: {
                 files: {
                     'js/production/main.js': [
+                        'js/development/utils.js',
                         'js/development/main.js'
                     ]
                 }
@@ -37,10 +64,11 @@ module.exports = function(grunt) {
     });
 
     // Load the plugin that provides the "uglify" task.
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
 
     // Default task(s).
-    grunt.registerTask('default', ['uglify', 'less']);
+    grunt.registerTask('default', ['jshint', 'uglify', 'less']);
 
 };

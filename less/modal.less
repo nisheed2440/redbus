@@ -1,0 +1,93 @@
+@modal-backdrop-bg-color:#000000;
+@modal-bg-color:#FFFFFF;
+
+.rb-modal-backdrop{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: @modal-backdrop-bg-color;
+	.lh-opacity(0.6);
+	z-index: 1024;
+}
+
+.rb-modal{
+	width: 90%;
+	background:@modal-bg-color;
+	left:50%;
+	margin:-250px 0 0 -45%;
+	position:absolute;
+	top:50%;
+	z-index: 1025;
+	.lh-box-sizing(border-box);
+	.lh-transition(all 0.3s 0s ease-in-out);
+
+	&.show{
+		top:50%;
+	}
+
+	.rb-modal-title{
+		padding: 10px;
+		background-color: #EBEBEB;
+		border-bottom:1px solid darken(#EBEBEB, 5%);
+		font-size: 18px;
+		font-weight: 400;
+		color: #999999;
+		text-align: center;
+		text-shadow: 1px 1px 0 #FFFFFF;
+
+	}
+
+	.rb-modal-content{
+		padding: 10px;
+		> h2{
+			font-weight: 300;
+			text-align: center;
+		}
+	}
+	.rb-modal-footer{
+		padding: 10px;
+		background-color: #EBEBEB;
+		border-top:1px solid darken(#EBEBEB, 5%);
+		text-align: center;
+
+		.btn{
+			width: 100px;
+			display: inline-block;
+			text-align: center;
+			height: 45px;
+			line-height: 45px;
+			font-size: 14px;
+			text-decoration: none;
+			color: #fff;
+			margin-left: 10px;
+			.lh-transition(all 0.3s 0s ease-in-out);
+			
+			&:first-child{
+				margin-left: 0;
+			}
+
+			&.btn-primary{
+				background: #2980b9;
+				&:hover{
+					background:darken(#2980b9, 10%);
+				}
+			}
+			&.btn-default{
+				background: #7A7A7A;
+				&:hover{
+					background:darken(#7A7A7A, 10%) ;
+				}
+			}
+		}
+	}
+}
+
+
+@media (min-width:768px){
+	.rb-modal{
+		width: 540px;
+		margin:-250px 0 0 -270px;
+	}
+}

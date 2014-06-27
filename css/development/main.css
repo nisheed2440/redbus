@@ -356,6 +356,98 @@ td,
 th {
   padding: 0;
 }
+.rb-modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  zoom: 1;
+  filter: alpha(opacity=60);
+  -webkit-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  z-index: 1024;
+}
+.rb-modal {
+  width: 90%;
+  background: #ffffff;
+  left: 50%;
+  margin: -250px 0 0 -45%;
+  position: absolute;
+  top: 50%;
+  z-index: 1025;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.3s 0s ease-in-out;
+  -moz-transition: all 0.3s 0s ease-in-out;
+  -o-transition: all 0.3s 0s ease-in-out;
+  transition: all 0.3s 0s ease-in-out;
+}
+.rb-modal.show {
+  top: 50%;
+}
+.rb-modal .rb-modal-title {
+  padding: 10px;
+  background-color: #EBEBEB;
+  border-bottom: 1px solid #dedede;
+  font-size: 18px;
+  font-weight: 400;
+  color: #999999;
+  text-align: center;
+  text-shadow: 1px 1px 0 #FFFFFF;
+}
+.rb-modal .rb-modal-content {
+  padding: 10px;
+}
+.rb-modal .rb-modal-content > h2 {
+  font-weight: 300;
+  text-align: center;
+}
+.rb-modal .rb-modal-footer {
+  padding: 10px;
+  background-color: #EBEBEB;
+  border-top: 1px solid #dedede;
+  text-align: center;
+}
+.rb-modal .rb-modal-footer .btn {
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  margin-left: 10px;
+  -webkit-transition: all 0.3s 0s ease-in-out;
+  -moz-transition: all 0.3s 0s ease-in-out;
+  -o-transition: all 0.3s 0s ease-in-out;
+  transition: all 0.3s 0s ease-in-out;
+}
+.rb-modal .rb-modal-footer .btn:first-child {
+  margin-left: 0;
+}
+.rb-modal .rb-modal-footer .btn.btn-primary {
+  background: #2980b9;
+}
+.rb-modal .rb-modal-footer .btn.btn-primary:hover {
+  background: #20638f;
+}
+.rb-modal .rb-modal-footer .btn.btn-default {
+  background: #7A7A7A;
+}
+.rb-modal .rb-modal-footer .btn.btn-default:hover {
+  background: #616161;
+}
+@media (min-width: 768px) {
+  .rb-modal {
+    width: 540px;
+    margin: -250px 0 0 -270px;
+  }
+}
 .hidden {
   display: none;
 }
@@ -443,6 +535,12 @@ html {
   font-size: 12px;
   line-height: 24px;
   border: 1px solid #999999;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
 }
 .rb-form-group .rb-form-comment-body {
   font-size: 12px;
@@ -453,6 +551,12 @@ html {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
 }
 .rb-form-group .rb-form-comment-submit {
   height: 50px;
@@ -470,9 +574,24 @@ html {
   -moz-transition: all 0.3s 0s ease-in;
   -o-transition: all 0.3s 0s ease-in;
   transition: all 0.3s 0s ease-in;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
 }
 .rb-form-group .rb-form-comment-submit:hover {
   background: #34495e;
+}
+.rb-form-group .rb-form-error {
+  background: #c0392b;
+  font-size: 12px;
+  padding: 10px;
+  color: #FFFFFF;
+}
+.rb-form-group .rb-form-error > strong {
+  display: block;
 }
 .rb-comments {
   width: 100%;
@@ -516,6 +635,7 @@ html {
   font-size: 18px;
   font-weight: 400;
   color: #666;
+  word-wrap: break-word;
 }
 .rb-comment-content .comment-desc {
   font-size: 13px;

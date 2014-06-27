@@ -1,11 +1,8 @@
-var RB = RB || {};
-
 (function() {
     var RBUTILS = function() {
         var _this = this;
         var _commentsObj = {};
         this.localStorageFlag = false;
-
 
         /**
          * Check if localstorage exists and set the appropriate flag
@@ -23,12 +20,21 @@ var RB = RB || {};
         };
 
         /**
+         * Trim the whitespaces from the title text
+         * @param  {String} inputString
+         * @return {String}
+         */
+        this.trimWhiteSpaces = function(inputString) {
+            return inputString.replace(/^\s+|\s+$/gm, '');
+        };
+
+        /**
          * Get comments from the localstorage
          * @return {Object} comments object
          * Sets _commentsObj private variable
          */
         this.getComments = function() {
-            _commentsObj = JSON.parse(localStorage.getItem("theBigAppleComments")) || {};
+            _commentsObj = JSON.parse(localStorage.getItem('theBigAppleComments')) || {};
             return _commentsObj;
         };
         /**
@@ -48,7 +54,7 @@ var RB = RB || {};
         this.getCommentByTitle = function(commentTitle) {
             var commentsList = [];
             for (var i in _commentsObj) {
-                if (_commentsObj[i].title === commentTitle) {
+                if (_commentsObj[i].title.toLowerCase() === commentTitle.toLowerCase()) {
                     commentsList.push(_commentsObj[i]);
                 }
             }
@@ -68,10 +74,10 @@ var RB = RB || {};
                 id: commentId,
                 title: commentTitle,
                 body: commentBody
-            }
+            };
 
             _commentsObj[commentId] = commentObj;
-            localStorage.setItem("theBigAppleComments", JSON.stringify(_commentsObj));
+            localStorage.setItem('theBigAppleComments', JSON.stringify(_commentsObj));
             _this.generateComment(commentObj);
             return this.getComments();
         };
@@ -87,10 +93,10 @@ var RB = RB || {};
                 id: commentId,
                 title: commentTitle,
                 body: commentBody
-            }
+            };
             var commentBlock = document.getElementById(commentId);
             _commentsObj[commentId] = commentObj;
-            localStorage.setItem("theBigAppleComments", JSON.stringify(_commentsObj));
+            localStorage.setItem('theBigAppleComments', JSON.stringify(_commentsObj));
             commentBlock.querySelector('.comment-title').innerText = commentTitle;
             commentBlock.querySelector('.comment-desc').innerText = commentBody;
 
@@ -104,7 +110,7 @@ var RB = RB || {};
         this.deleteComment = function(commentId) {
             var commentBlock = document.getElementById(commentId);
             delete _commentsObj[commentId];
-            localStorage.setItem("theBigAppleComments", JSON.stringify(_commentsObj));
+            localStorage.setItem('theBigAppleComments', JSON.stringify(_commentsObj));
             commentBlock.parentNode.removeChild(commentBlock);
             return this.getComments();
         };
@@ -119,6 +125,12 @@ var RB = RB || {};
             commentsTemplate.id = commentObj.id;
             commentsTemplate.querySelector('.comment-title').innerText = commentObj.title;
             commentsTemplate.querySelector('.comment-desc').innerText = commentObj.body;
+
+            commentsTemplate.querySelector('.comment-delete').addEventListener('click', function(e) {
+                e.preventDefault();
+                _this.createDeleteCommentModal(commentObj.id);
+            });
+
             commentsList.appendChild(commentsTemplate);
             return;
         };
@@ -128,9 +140,49 @@ var RB = RB || {};
          */
         this.prepopulateComments = function() {
             for (var i in _commentsObj) {
-                _this.generateComment(_commentsObj[i]);
+                if (typeof _commentsObj[i] === 'object') {
+                    _this.generateComment(_commentsObj[i]);
+                }
             }
             return;
+        };
+
+        this.createDeleteCommentModal = function(commentId) {
+            var bodyNode = document.getElementsByTagName('body')[0];
+            var modalTemplate = document.getElementById('comment-delete-template').children[0].cloneNode(true);
+            var modalBackdrop = document.getElementById('comment-delete-template').children[1].cloneNode(true);
+            var removeModal = function() {
+                bodyNode.removeChild(modalTemplate);
+                bodyNode.removeChild(modalBackdrop);
+            };
+
+            modalBackdrop.addEventListener('click', function(e) {
+                removeModal();
+            });
+
+            modalTemplate.querySelector('.comment-delete-no').addEventListener('click', function(e) {
+                e.preventDefault();
+                removeModal();
+            });
+
+            modalTemplate.querySelector('.comment-delete-yes').addEventListener('click', function(e) {
+                e.preventDefault();
+                _this.deleteComment(commentId);
+                removeModal();
+            });
+
+            bodyNode.appendChild(modalBackdrop);
+            bodyNode.appendChild(modalTemplate);
+
+
+            return;
+        };
+
+        this.createErrorMessage = function(title, message) {
+            var formError = document.createElement('div');
+            formError.className = 'rb-form-error';
+            formError.innerHTML = '<strong>' + title + '</strong>' + message;
+            return formError;
         };
 
         var _init = function() {
@@ -142,6 +194,7 @@ var RB = RB || {};
         };
 
         return _init();
-    }
+    };
+
     RB.Utils = new RBUTILS();
 })();

@@ -105,6 +105,7 @@ html{
 		font-size: 12px;
 		line-height: 24px;
 		border: 1px solid @comment-text-border-color;
+		.lh-border-radius(0);
 	}
 	.rb-form-comment-body{
 		font-size: 12px;
@@ -113,6 +114,7 @@ html{
 		resize:vertical;
 		min-height: 135px;
 		.lh-appearance(none);
+		.lh-border-radius(0);
 	}
 	.rb-form-comment-submit{
 		height: 50px;
@@ -125,14 +127,24 @@ html{
 		margin-top: 20px;
 		.lh-appearance(none);
 		.lh-transition(all 0.3s 0s ease-in);
+		.lh-border-radius(0);
 
 		&:hover{
 			background:#34495e;
 		}
+	}
+
+	.rb-form-error{
+		background: #c0392b;
+		font-size: 12px;
+		padding: 10px;
+		color: #FFFFFF;
+		> strong{
+			display: block;
+		}
+
 	}		
 }
-
-//830
 
 .rb-comments{
 	width: 100%;
@@ -174,6 +186,7 @@ html{
 		font-size: 18px;
 		font-weight: 400;
 		color:#666;
+		word-wrap: break-word;
 	}
 	.comment-desc{
 		font-size: 13px;
