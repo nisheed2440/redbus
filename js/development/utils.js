@@ -4,6 +4,23 @@
         var _commentsObj = {};
         this.localStorageFlag = false;
 
+        this.hasClass = function(ele, cls) {
+            return ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+        };
+
+        this.addClass = function(ele, cls) {
+            if (!_this.hasClass(ele, cls)) {
+                ele.className += ' ' + cls;
+            }
+        };
+
+        this.removeClass = function(ele, cls) {
+            if (_this.hasClass(ele, cls)) {
+                var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+                ele.className = ele.className.replace(reg, ' ');
+            }
+        };
+
         /**
          * Check if localstorage exists and set the appropriate flag
          * @return {boolean} true if localstorage functionality exists.
@@ -121,11 +138,21 @@
          */
         this.generateComment = function(commentObj) {
             var commentsList = document.getElementById('rb-comments');
-            var commentsTemplate = document.getElementById('comment-template').children[0].cloneNode(true);
+
+            var commentsTemplate = document.createElement('div');
+            commentsTemplate.className = 'rb-comment-wrap';
             commentsTemplate.id = commentObj.id;
+
+            commentsTemplate.innerHTML = RB.Templates.comment;
             commentsTemplate.querySelector('.comment-title').innerText = commentObj.title;
             commentsTemplate.querySelector('.comment-desc').innerText = commentObj.body;
+            commentsTemplate.querySelector('.comment-edit').innerText = RB.GlobalStrings.commentEdit;
+            commentsTemplate.querySelector('.comment-delete').innerText = RB.GlobalStrings.commentDelete;
 
+            commentsTemplate.querySelector('.comment-edit').addEventListener('click', function(e) {
+                e.preventDefault();
+                _this.createEditCommentModal(commentObj.id);
+            });
             commentsTemplate.querySelector('.comment-delete').addEventListener('click', function(e) {
                 e.preventDefault();
                 _this.createDeleteCommentModal(commentObj.id);
@@ -146,19 +173,34 @@
             }
             return;
         };
-
+        /**
+         * Create modal window to show delete confirmation
+         * @param  {Number} commentId
+         * @return {null}
+         */
         this.createDeleteCommentModal = function(commentId) {
             var bodyNode = document.getElementsByTagName('body')[0];
-            var modalTemplate = document.getElementById('comment-delete-template').children[0].cloneNode(true);
-            var modalBackdrop = document.getElementById('comment-delete-template').children[1].cloneNode(true);
+            var modalTemplate = document.createElement('div');
+            modalTemplate.className = 'rb-modal-wrapper';
+            modalTemplate.innerHTML = RB.Templates.deleteComment;
+            modalTemplate.querySelector('.rb-modal-title').innerText = RB.GlobalStrings.deleteModalTitle;
+            modalTemplate.querySelector('.rb-modal-content').innerHTML = RB.GlobalStrings.deleteModalContent;
+            modalTemplate.querySelector('.comment-delete-no').innerText = RB.GlobalStrings.deleteModalCancel;
+            modalTemplate.querySelector('.comment-delete-yes').innerText = RB.GlobalStrings.deleteModalConfirm;
+
+            var modalBackdrop = document.createElement('div');
+            modalBackdrop.className = 'rb-modal-backdrop';
+
             var removeModal = function() {
                 bodyNode.removeChild(modalTemplate);
                 bodyNode.removeChild(modalBackdrop);
+                _this.removeClass(bodyNode, 'rb-modal-active');
             };
 
             modalBackdrop.addEventListener('click', function(e) {
                 removeModal();
             });
+
 
             modalTemplate.querySelector('.comment-delete-no').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -173,16 +215,106 @@
 
             bodyNode.appendChild(modalBackdrop);
             bodyNode.appendChild(modalTemplate);
-
-
+            _this.addClass(bodyNode, 'rb-modal-active');
             return;
         };
 
+        this.createEditCommentModal = function(commentId) {
+            var commentObj = _this.getCommentById(commentId);
+            var bodyNode = document.getElementsByTagName('body')[0];
+            var modalTemplate = document.createElement('div');
+            modalTemplate.className = 'rb-modal-wrapper';
+            modalTemplate.innerHTML = RB.Templates.editComment;
+
+            modalTemplate.querySelector('.rb-modal-title').innerText = RB.GlobalStrings.editModalTitle;
+            modalTemplate.querySelector('.comment-edit-cancel').innerText = RB.GlobalStrings.editModalCancel;
+            modalTemplate.querySelector('.comment-edit-update').innerText = RB.GlobalStrings.editModalConfirm;
+            modalTemplate.querySelector('label[for="edit-comment-title"]').innerText = RB.GlobalStrings.editModalTitleLabel;
+            modalTemplate.querySelector('label[for="edit-comment-body"]').innerText = RB.GlobalStrings.editModalDescLabel;
+
+            modalTemplate.querySelector('#edit-comment-title').value = commentObj.title;
+            modalTemplate.querySelector('#edit-comment-body').value = commentObj.body;
+
+            var modalBackdrop = document.createElement('div');
+            modalBackdrop.className = 'rb-modal-backdrop';
+
+            var errorHolder = modalTemplate.querySelector('#rb-edit-error-holder');
+            var commentTitleInput = modalTemplate.querySelector('#edit-comment-title');
+            var commentBodyInput = modalTemplate.querySelector('#edit-comment-body');
+
+            var removeModal = function() {
+                bodyNode.removeChild(modalTemplate);
+                bodyNode.removeChild(modalBackdrop);
+                _this.removeClass(bodyNode, 'rb-modal-active');
+            };
+
+            modalBackdrop.addEventListener('click', function(e) {
+                removeModal();
+            });
+
+
+            modalTemplate.querySelector('.comment-edit-cancel').addEventListener('click', function(e) {
+                e.preventDefault();
+                removeModal();
+            });
+
+            modalTemplate.querySelector('.comment-edit-update').addEventListener('click', function(e) {
+                e.preventDefault();
+                var commentTitle = commentTitleInput.value;
+                var commentBody = commentBodyInput.value;
+
+                if (_this.trimWhiteSpaces(commentTitle) !== '' && _this.trimWhiteSpaces(commentBody) !== '') {
+                    if (commentTitle === commentObj.title) {
+                        _this.showErrorMessage(errorHolder);
+                        _this.updateComment(commentObj.id, commentTitle, commentBody);
+                        removeModal();
+                        return false;
+                    }
+                    if (_this.getCommentByTitle(commentTitle).length) {
+                        _this.showErrorMessage(errorHolder, RB.GlobalStrings.errorHeading, RB.GlobalStrings.errorTitleExists);
+                        return false;
+                    } else {
+                        _this.showErrorMessage(errorHolder);
+                        _this.updateComment(commentObj.id, commentTitle, commentBody);
+                        removeModal();
+                        return false;
+                    }
+                } else {
+                    _this.showErrorMessage(errorHolder, RB.GlobalStrings.errorHeading, RB.GlobalStrings.errorEmptyFields);
+                }
+            });
+
+            bodyNode.appendChild(modalBackdrop);
+            bodyNode.appendChild(modalTemplate);
+            _this.addClass(bodyNode, 'rb-modal-active');
+        };
+        /**
+         * Create error message HTML body
+         * @param  {String} title
+         * @param  {String} message
+         * @return {Object}
+         */
         this.createErrorMessage = function(title, message) {
             var formError = document.createElement('div');
             formError.className = 'rb-form-error';
             formError.innerHTML = '<strong>' + title + '</strong>' + message;
             return formError;
+        };
+        /**
+         * Show error message  on HTML body removing the older one
+         * @param  {Object} el
+         * @param  {String} title
+         * @param  {String} message
+         * @return {Object}
+         */
+        this.showErrorMessage = function(el, title, message) {
+            if (el.childNodes.length) {
+                el.removeChild(el.childNodes[0]);
+            }
+            if (typeof title !== 'undefined' && typeof message !== 'undefined') {
+                el.appendChild(_this.createErrorMessage(title, message));
+            }
+            return el;
         };
 
         var _init = function() {

@@ -1,6 +1,23 @@
 @modal-backdrop-bg-color:#000000;
 @modal-bg-color:#FFFFFF;
 
+.rb-modal-active{
+	overflow:hidden;
+}
+
+.rb-modal-wrapper{
+	overflow: auto;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1024;
+	outline: 0;
+	.lh-box-sizing(border-box);
+}
+
 .rb-modal-backdrop{
 	position: fixed;
 	top: 0;
@@ -12,20 +29,20 @@
 	z-index: 1024;
 }
 
-.rb-modal{
-	width: 90%;
-	background:@modal-bg-color;
-	left:50%;
-	margin:-250px 0 0 -45%;
-	position:absolute;
-	top:50%;
-	z-index: 1025;
-	.lh-box-sizing(border-box);
-	.lh-transition(all 0.3s 0s ease-in-out);
+.rb-modal-shell{
+	 position: relative;
+	 width: 100%;
+	 margin: 10px auto;
+	 padding: 0 10px;
+}
 
-	&.show{
-		top:50%;
-	}
+.rb-modal{
+	position: relative;
+	background-color: @modal-bg-color;
+	border-radius: 0;
+	.lh-box-shadow(none);
+	background-clip: padding-box;
+	outline: none;
 
 	.rb-modal-title{
 		padding: 10px;
@@ -86,8 +103,8 @@
 
 
 @media (min-width:768px){
-	.rb-modal{
+	.rb-modal-shell{
 		width: 540px;
-		margin:-250px 0 0 -270px;
+	    margin: 70px auto;
 	}
 }

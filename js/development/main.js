@@ -27,24 +27,16 @@
 
         if (RB.Utils.trimWhiteSpaces(commentTitle) !== '' && RB.Utils.trimWhiteSpaces(commentBody) !== '') {
             if (RB.Utils.getCommentByTitle(commentTitle).length) {
-                if (RB.Form.errorHolder.childNodes.length) {
-                    RB.Form.errorHolder.removeChild(RB.Form.errorHolder.childNodes[0]);
-                }
-                RB.Form.errorHolder.appendChild(RB.Utils.createErrorMessage('Oops!!', 'Seems like the comment title already exists. Please enter a different title.'));
+                RB.Utils.showErrorMessage(RB.Form.errorHolder, RB.GlobalStrings.errorHeading, RB.GlobalStrings.errorTitleExists);
                 RB.Form.commentTitleInput.value = '';
             } else {
-                if (RB.Form.errorHolder.childNodes.length) {
-                    RB.Form.errorHolder.removeChild(RB.Form.errorHolder.childNodes[0]);
-                }
+                RB.Utils.showErrorMessage(RB.Form.errorHolder);
                 RB.Utils.addComment(commentTitle, commentBody);
                 RB.Form.commentTitleInput.value = '';
                 RB.Form.commentBodyInput.value = '';
             }
         } else {
-            if (RB.Form.errorHolder.childNodes.length) {
-                RB.Form.errorHolder.removeChild(RB.Form.errorHolder.childNodes[0]);
-            }
-            RB.Form.errorHolder.appendChild(RB.Utils.createErrorMessage('Oops!!', 'Seems like you haven\'t entered the tile or the description.'));
+            RB.Utils.showErrorMessage(RB.Form.errorHolder, RB.GlobalStrings.errorHeading, RB.GlobalStrings.errorEmptyFields);
         }
     });
 

@@ -143,6 +143,32 @@ html{
 			display: block;
 		}
 
+	}	
+
+	> label{
+		padding: 5px;
+		background: #20638f;
+		display: block;
+		color: #FFF;
+		font-size: 12px;
+		.lh-box-sizing(border-box);
+	}
+
+	.rb-edit-comment-title{
+		padding: 10px;
+		height: 40px;
+		font-size: 12px;
+		border: 1px solid @comment-text-border-color;
+		.lh-appearance(none);
+		.lh-border-radius(0);
+	}
+	.rb-edit-comment-body{
+		padding: 10px;
+		font-size: 12px;
+		resize:vertical;
+		min-height: 135px;
+		.lh-appearance(none);
+		.lh-border-radius(0);
 	}		
 }
 

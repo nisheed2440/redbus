@@ -36,6 +36,7 @@ module.exports = function(grunt) {
             mainMinify: {
                 files: {
                     'js/production/main.js': [
+                        'js/development/templates.js',
                         'js/development/utils.js',
                         'js/development/main.js'
                     ]

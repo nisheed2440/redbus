@@ -356,6 +356,23 @@ td,
 th {
   padding: 0;
 }
+.rb-modal-active {
+  overflow: hidden;
+}
+.rb-modal-wrapper {
+  overflow: auto;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1024;
+  outline: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .rb-modal-backdrop {
   position: fixed;
   top: 0;
@@ -370,24 +387,21 @@ th {
   opacity: 0.6;
   z-index: 1024;
 }
-.rb-modal {
-  width: 90%;
-  background: #ffffff;
-  left: 50%;
-  margin: -250px 0 0 -45%;
-  position: absolute;
-  top: 50%;
-  z-index: 1025;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.3s 0s ease-in-out;
-  -moz-transition: all 0.3s 0s ease-in-out;
-  -o-transition: all 0.3s 0s ease-in-out;
-  transition: all 0.3s 0s ease-in-out;
+.rb-modal-shell {
+  position: relative;
+  width: 100%;
+  margin: 10px auto;
+  padding: 0 10px;
 }
-.rb-modal.show {
-  top: 50%;
+.rb-modal {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-clip: padding-box;
+  outline: none;
 }
 .rb-modal .rb-modal-title {
   padding: 10px;
@@ -443,9 +457,9 @@ th {
   background: #616161;
 }
 @media (min-width: 768px) {
-  .rb-modal {
+  .rb-modal-shell {
     width: 540px;
-    margin: -250px 0 0 -270px;
+    margin: 70px auto;
   }
 }
 .hidden {
@@ -592,6 +606,46 @@ html {
 }
 .rb-form-group .rb-form-error > strong {
   display: block;
+}
+.rb-form-group > label {
+  padding: 5px;
+  background: #20638f;
+  display: block;
+  color: #FFF;
+  font-size: 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.rb-form-group .rb-edit-comment-title {
+  padding: 10px;
+  height: 40px;
+  font-size: 12px;
+  border: 1px solid #999999;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+}
+.rb-form-group .rb-edit-comment-body {
+  padding: 10px;
+  font-size: 12px;
+  resize: vertical;
+  min-height: 135px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
 }
 .rb-comments {
   width: 100%;
