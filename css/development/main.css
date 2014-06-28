@@ -512,6 +512,9 @@ html {
 }
 .rb-header .rb-header-group > h1 {
   margin: 0;
+  font-size: 50px;
+  font-weight: 600;
+  color: #ebebeb;
 }
 .rb-header .rb-header-group > h2 {
   font-weight: 300;
@@ -575,11 +578,11 @@ html {
 .rb-form-group .rb-form-comment-submit {
   height: 50px;
   background: transparent;
-  border: 6px solid #FFFFFF;
+  border: 6px solid #ffffff;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 20px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -602,7 +605,7 @@ html {
   background: #c0392b;
   font-size: 12px;
   padding: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .rb-form-group .rb-form-error > strong {
   display: block;
@@ -611,7 +614,7 @@ html {
   background: #20638f;
   font-size: 12px;
   padding: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .rb-form-group .rb-form-info > strong {
   display: block;
@@ -620,7 +623,7 @@ html {
   padding: 5px;
   background: #20638f;
   display: block;
-  color: #FFF;
+  color: #ffffff;
   font-size: 12px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -628,7 +631,7 @@ html {
 }
 .rb-form-group .rb-search-comment-submit {
   background: #20638f;
-  color: #FFF;
+  color: #ffffff;
   height: 50px;
   font-size: 14px;
   padding: 10px;
@@ -725,7 +728,7 @@ html {
   height: 20px;
   text-align: center;
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-left: 13px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -737,7 +740,7 @@ html {
 }
 .rb-comment-actions .comment-edit:hover,
 .rb-comment-actions .comment-delete:hover {
-  background-color: #999;
+  background-color: #999999;
 }
 .rb-footer {
   position: absolute;
