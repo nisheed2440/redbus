@@ -33,16 +33,16 @@
         '<div class="rb-modal">' +
         '<div class="rb-modal-title"></div>' +
         '<div class="rb-modal-content">' +
-        '<form class="rb-form">' +
+        '<form id="rb-form-edit" class="rb-form" action="" method="post">' +
         '<fieldset>' +
         '<div id="rb-edit-error-holder" class="rb-form-group"></div>' +
         '<div class="rb-form-group">' +
         '<label for="edit-comment-title"></label>' +
-        '<input id="edit-comment-title" class="rb-edit-comment-title" name="title" type="text">' +
+        '<input id="edit-comment-title" class="rb-edit-comment-title rb-form-input" name="title" type="text">' +
         '</div>' +
         '<div class="rb-form-group">' +
         '<label for="edit-comment-body"></label>' +
-        '<textarea id="edit-comment-body" class="rb-edit-comment-body" name="comment"></textarea>' +
+        '<textarea id="edit-comment-body" class="rb-edit-comment-body rb-form-textarea" name="comment"></textarea>' +
         '</div>' +
         '</fieldset>' +
         '</form>' +
@@ -53,4 +53,39 @@
         '</div>' +
         '</div>' +
         '</div>';
+
+    RB.Templates.searchFormFields =
+        '<div id="rb-search-form" class="rb-search-form">' +
+        '<div class="rb-form-group">' +
+        '<input class="rb-search-comment-title rb-form-input" name="title" type="text" placeholder="Please enter the title of the comment to search">' +
+        '</div>' +
+        '<div class="rb-form-group">' +
+        '<input class="rb-search-comment-submit" type="submit" name="searchcomment">' +
+        '</div>' +
+        '</div>';
+
+    RB.Templates.searchFormResult =
+        '<div id="rb-search-results" class="rb-search-results hidden">' +
+        '<div id="rb-search-info-holder" class="rb-form-group"></div>' +
+        '<div class="rb-form-group">' +
+        '<ul class="rb-search-results-list"></ul>' +
+        '</div>' +
+        '</div>';
+
+    RB.Templates.searchModal =
+        '<div class="rb-modal-shell">' +
+        '<div class="rb-modal">' +
+        '<div class="rb-modal-title"></div>' +
+        '<div class="rb-modal-content">' +
+        '<form id="rb-search-comment-form" class="rb-form" action="" method="post">' +
+        '<fieldset></fieldset>' +
+        '</form>' +
+        '</div>' +
+        '<div class="rb-modal-footer">' +
+        '<a href="#" class="comment-search-close  btn btn-default"></a>' +
+        '<a href="#" class="comment-search-search-again  btn btn-primary hidden"></a>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+
 })();

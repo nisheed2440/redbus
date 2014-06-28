@@ -40,4 +40,9 @@
         }
     });
 
+    document.getElementsByClassName('rb-search')[0].addEventListener('click', function(e) {
+        e.preventDefault();
+        RB.Utils.createSearchModal();
+    });
+
 })();

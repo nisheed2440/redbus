@@ -39,14 +39,14 @@
       </hgroup>
     </header>
     <section class="rb-add-comment">
-      <form class="rb-form">
+      <form class="rb-form" action="" method="post">
         <fieldset>
           <div id="rb-form-error-holder" class="rb-form-group"></div>
           <div class="rb-form-group">
-            <input class="rb-form-comment-title" name="title" type="text" placeholder="Enter Tile Here (eg. My New York Experience)">
+            <input class="rb-form-comment-title rb-form-input" name="title" type="text" placeholder="Enter Tile Here (eg. My New York Experience)">
           </div>
           <div class="rb-form-group">
-            <textarea class="rb-form-comment-body" name="comment" placeholder="Tell us more about it! (eg. When I went to New York City last month, ....)"></textarea>
+            <textarea class="rb-form-comment-body rb-form-textarea" name="comment" placeholder="Tell us more about it! (eg. When I went to New York City last month, ....)"></textarea>
           </div>
           <div class="rb-form-group">
             <input class="rb-form-comment-submit" type="submit" name="submitcomment" value="SUBMIT">
@@ -59,6 +59,10 @@
   <footer class="rb-footer">
     <p class="rb-footer-copywrite">&copy; Pilani Soft Labs Pvt Ltd - www.redBus.in, 2014</p>
   </footer>
+
+  <a href="#" title="SEARCH COMMENT" class="rb-search">
+    <img src="img/search.png" alt="search icon">
+  </a>
 
   <!-- THE GLOBAL NAMESPACE FOR THE APPLICATION -->
   <script type="text/javascript">
@@ -76,11 +80,20 @@
       editModalCancel:'CANCEL',
       editModalTitleLabel:'COMMENT TITLE',
       editModalDescLabel:'COMMENT BODY',
+      searchModalTitle:'SEARCH COMMENTS',
+      searchModalClose:'CLOSE',
+      searchModalSearch:'SEARCH',
+      searchModalSearchAgain:'SEARCH AGAIN',
+      errorNoResults:'No comments found!',
+      infoFoundComments:'Results found!',
+      infoFoundCommentsSubText:'Click on the comment to edit it.',
       errorTitleExists:'Seems like the comment title already exists. Please enter a different title.',
       errorEmptyFields:'Seems like you haven\'t entered the tile or the description.',
       errorHeading:'Oops!!'
     }
   </script>
-  <script src="js/production/main.js"></script>
+  <script src="js/development/templates.js"></script>
+  <script src="js/development/utils.js"></script>
+  <script src="js/development/main.js"></script>
 </body>
 </html>

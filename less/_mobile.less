@@ -6,7 +6,7 @@
 @comment-text-border-color:#999999;
 
 .hidden{
-	display: none;
+	display: none !important;
 }
 
 .no-js{
@@ -99,7 +99,8 @@ html{
 		width: 100%;
 		.lh-box-sizing(border-box);
 	}
-	.rb-form-comment-title{
+
+	.rb-form-input{
 		height: 44px;
 		padding: 10px;
 		font-size: 12px;
@@ -107,7 +108,7 @@ html{
 		border: 1px solid @comment-text-border-color;
 		.lh-border-radius(0);
 	}
-	.rb-form-comment-body{
+	.rb-form-textarea{
 		font-size: 12px;
 		padding: 10px;
 		border: 1px solid @comment-text-border-color;
@@ -116,6 +117,7 @@ html{
 		.lh-appearance(none);
 		.lh-border-radius(0);
 	}
+
 	.rb-form-comment-submit{
 		height: 50px;
 		background:transparent;
@@ -142,7 +144,15 @@ html{
 		> strong{
 			display: block;
 		}
-
+	}
+	.rb-form-info{
+		background: #20638f;
+		font-size: 12px;
+		padding: 10px;
+		color: #FFFFFF;
+		> strong{
+			display: block;
+		}
 	}	
 
 	> label{
@@ -154,23 +164,45 @@ html{
 		.lh-box-sizing(border-box);
 	}
 
-	.rb-edit-comment-title{
+	.rb-search-comment-submit{
+		background: #20638f;
+		color: #FFF;
+		height: 50px;
+		font-size: 14px;
 		padding: 10px;
-		height: 40px;
-		font-size: 12px;
-		border: 1px solid @comment-text-border-color;
+		border-width: 0;
 		.lh-appearance(none);
-		.lh-border-radius(0);
+
 	}
-	.rb-edit-comment-body{
-		padding: 10px;
-		font-size: 12px;
-		resize:vertical;
-		min-height: 135px;
-		.lh-appearance(none);
-		.lh-border-radius(0);
-	}		
 }
+
+.comment-search-search-again{
+		width: 150px !important;
+	}
+
+.rb-search-results-list{
+	list-style: none;
+	padding: 0;
+	height: 300px;
+	overflow-y: auto;
+
+	.result-comment{
+		border-left:4px solid #999999;
+		padding: 4px;
+		cursor:pointer;
+		margin-bottom: 2px;
+
+		.result-comment-title{
+			font-size: 12px;
+			display: block;
+		}
+		.result-comment-excerpt{
+			font-size: 10px;
+			display: block;
+		}
+	}
+}
+
 
 .rb-comments{
 	width: 100%;
@@ -263,3 +295,20 @@ html{
 		color: @header-font-color;
 	}
 } 
+
+.rb-search{
+	position: absolute;
+	top: 77px;
+	right: 0;
+	vertical-align: middle;
+	padding: 6px 8px 5px;
+	background: #999999;
+	border:1px solid darken(#999999, 10%);
+	.lh-transition(right 0.3s 0s linear);
+}
+
+.rb-modal-active{
+	.rb-search{
+		right: -100%;
+	}
+}

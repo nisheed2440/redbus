@@ -463,7 +463,7 @@ th {
   }
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 .no-js .rb-content {
   display: none;
@@ -543,7 +543,7 @@ html {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.rb-form-group .rb-form-comment-title {
+.rb-form-group .rb-form-input {
   height: 44px;
   padding: 10px;
   font-size: 12px;
@@ -556,7 +556,7 @@ html {
   border-radius: 0;
   background-clip: padding-box;
 }
-.rb-form-group .rb-form-comment-body {
+.rb-form-group .rb-form-textarea {
   font-size: 12px;
   padding: 10px;
   border: 1px solid #999999;
@@ -607,6 +607,15 @@ html {
 .rb-form-group .rb-form-error > strong {
   display: block;
 }
+.rb-form-group .rb-form-info {
+  background: #20638f;
+  font-size: 12px;
+  padding: 10px;
+  color: #FFFFFF;
+}
+.rb-form-group .rb-form-info > strong {
+  display: block;
+}
 .rb-form-group > label {
   padding: 5px;
   background: #20638f;
@@ -617,35 +626,39 @@ html {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.rb-form-group .rb-edit-comment-title {
+.rb-form-group .rb-search-comment-submit {
+  background: #20638f;
+  color: #FFF;
+  height: 50px;
+  font-size: 14px;
   padding: 10px;
-  height: 40px;
-  font-size: 12px;
-  border: 1px solid #999999;
+  border-width: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -webkit-border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 0;
-  -moz-background-clip: padding;
-  border-radius: 0;
-  background-clip: padding-box;
 }
-.rb-form-group .rb-edit-comment-body {
-  padding: 10px;
+.comment-search-search-again {
+  width: 150px !important;
+}
+.rb-search-results-list {
+  list-style: none;
+  padding: 0;
+  height: 300px;
+  overflow-y: auto;
+}
+.rb-search-results-list .result-comment {
+  border-left: 4px solid #999999;
+  padding: 4px;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+.rb-search-results-list .result-comment .result-comment-title {
   font-size: 12px;
-  resize: vertical;
-  min-height: 135px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 0;
-  -moz-background-clip: padding;
-  border-radius: 0;
-  background-clip: padding-box;
+  display: block;
+}
+.rb-search-results-list .result-comment .result-comment-excerpt {
+  font-size: 10px;
+  display: block;
 }
 .rb-comments {
   width: 100%;
@@ -739,6 +752,22 @@ html {
   font-size: 12px;
   line-height: 24px;
   color: #ebebeb;
+}
+.rb-search {
+  position: absolute;
+  top: 77px;
+  right: 0;
+  vertical-align: middle;
+  padding: 6px 8px 5px;
+  background: #999999;
+  border: 1px solid #808080;
+  -webkit-transition: right 0.3s 0s linear;
+  -moz-transition: right 0.3s 0s linear;
+  -o-transition: right 0.3s 0s linear;
+  transition: right 0.3s 0s linear;
+}
+.rb-modal-active .rb-search {
+  right: -100%;
 }
 @media (min-width: 768px) {
   .rb-no-js-msg > h1 {
