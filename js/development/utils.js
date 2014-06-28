@@ -1,19 +1,46 @@
+/*!
+ * utils.js
+ * This file contains the utility functions for the assignment given by redbus.com.
+ *
+ * @project   THE BIG APPLE
+ * @date      2014-06-25
+ * @author    NISHEED JAGADISH <nisheed2016@gmail.com>
+ * @licensor  REDBUS
+ * @site      REDBUS
+ *
+ */
 (function() {
     var RBUTILS = function() {
         var _this = this;
         var _commentsObj = {};
         this.localStorageFlag = false;
 
+        /**
+         * Check if element has class
+         * @param  {Object}  ele
+         * @param  {String}  cls
+         * @return {Boolean}
+         */
         this.hasClass = function(ele, cls) {
             return ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
         };
-
+        /**
+         * Add class to an element
+         * @param  {Object}  ele
+         * @param  {String}  cls
+         * @return {Boolean}
+         */
         this.addClass = function(ele, cls) {
             if (!_this.hasClass(ele, cls)) {
                 ele.className += ' ' + cls;
             }
         };
-
+        /**
+         * Remove class from an element
+         * @param  {Object}  ele
+         * @param  {String}  cls
+         * @return {Boolean}
+         */
         this.removeClass = function(ele, cls) {
             if (_this.hasClass(ele, cls)) {
                 var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
@@ -77,7 +104,12 @@
             }
             return commentsList;
         };
-
+        /**
+         * Search Comments by comment title
+         * @param  {String} commentTitle
+         * @return {Object} Array of comments matching the title
+         * NOTE: Used to search by comment title
+         */
         this.searchCommentsByTitle = function(commentTitle) {
             var commentsList = [];
             for (var i in _commentsObj) {
@@ -224,7 +256,11 @@
             _this.addClass(bodyNode, 'rb-modal-active');
             return;
         };
-
+        /**
+         * Create modal window to edit comment
+         * @param  {Number} commentId
+         * @return {null}
+         */
         this.createEditCommentModal = function(commentId) {
             var commentObj = _this.getCommentById(commentId);
             var bodyNode = document.getElementsByTagName('body')[0];
@@ -306,7 +342,11 @@
             bodyNode.appendChild(modalTemplate);
             _this.addClass(bodyNode, 'rb-modal-active');
         };
-
+        /**
+         * Create modal window to search comment
+         * @param  {Number} commentId
+         * @return {null}
+         */
         this.createSearchModal = function() {
             var bodyNode = document.getElementsByTagName('body')[0];
             var modalTemplate = document.createElement('div');
@@ -361,7 +401,9 @@
             bodyNode.appendChild(modalTemplate);
             _this.addClass(bodyNode, 'rb-modal-active');
         };
-
+        /**
+         * Create list inside the search modal
+         */
         this.createResultList = function(resultList, modalTemplate, modalBackdrop) {
 
             var searchResultsCount = _this.createInfoMessage(resultList.length + ' ' + RB.GlobalStrings.infoFoundComments, RB.GlobalStrings.infoFoundCommentsSubText);
@@ -404,9 +446,6 @@
             }
             searchInfoHolder.appendChild(searchResultsCount);
         };
-
-
-
         /**
          * Create error message HTML body
          * @param  {String} title

@@ -1,6 +1,7 @@
 /*!
  * main.js
- * This file contains the code for the assignment given by redbus.com.
+ * This file contains the initiailizations for the add form and search form
+ *  for the assignment given by redbus.com.
  *
  * @project   THE BIG APPLE
  * @date      2014-06-25
@@ -20,6 +21,7 @@
     //Remove the no-js class if javascript is enabled
     document.getElementsByTagName('html')[0].className = document.getElementsByTagName('html')[0].className.replace('no-js', '');
 
+    //Binding for add comment form submit
     document.getElementsByClassName('rb-form-comment-submit')[0].addEventListener('click', function(e) {
         e.preventDefault();
         var commentTitle = RB.Form.commentTitleInput.value;
@@ -40,6 +42,7 @@
         }
     });
 
+    //Bindings for search comment
     document.getElementsByClassName('rb-search')[0].addEventListener('click', function(e) {
         e.preventDefault();
         RB.Utils.createSearchModal();
